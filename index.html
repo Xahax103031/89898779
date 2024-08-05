@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Открытка для любимой</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      opacity: 0; /* Изначально контейнер невидим */
+      transform: translateY(20px); /* Сдвигаем контейнер вниз по оси Y */
+      transition: opacity 0.5s ease, transform 0.5s ease; /* Плавный переход для контейнера */
+    }
+
+    .container.visible {
+      opacity: 1; /* Появляется контейнер */
+      transform: translateY(0); /* Возвращаем его на место */
+    }
+
+    h1 {
+      color: #ff69b4;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, opacity 0.5s ease-in-out;
+      opacity: 0; /* Сначала кнопка невидима */
+      visibility: hidden; /* И скрыта */
+      transform: translateY(20px); /* Сдвигаем кнопку вниз */
+    }
+
+    .button.visible {
+      opacity: 1; /* Сделать видимой */
+      visibility: visible; /* Отобразить */
+      transform: translateY(0); /* Возвращаем кнопку на место */
+    }
+
+    .button:hover {
+      background-color: #e84e97;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Дорогая,</h1>
+    <p>Эти слова - всего лишь капля в море того, что я чувствую к тебе. Ты - моя радость, мой свет, моя любовь. 
+    Ты делаешь мою жизнь ярче, а каждый день - незабываемым.</p>
+    <button class="button"><a href="страница 2.html">Перейти к следующей странице</a></button>
+  </div>
+
+  <script>
+    // Ждем 1 секунду перед тем, как показать контейнер и кнопку
+    setTimeout(() => {
+      const container = document.querySelector('.container');
+      const button = document.querySelector('.button');
+      
+      container.classList.add('visible'); // Появляется контейнер
+      setTimeout(() => {
+        button.classList.add('visible'); // Появляется кнопка
+      }, 500); // Через 0.5 секунды после контейнера
+    }, 1000);
+  </script>
+</body>
+</html>

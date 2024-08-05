@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наша История</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            overflow: hidden; /* Скрыть прокрутку */
+        }
+        h1 {
+            color: #ff69b4;
+        }
+        p {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .heart {
+            position: absolute;
+            width: 50px; /* Размер сердца можно взять из картинки */
+            height: 50px; /* Размер сердца можно взять из картинки */
+            animation: appear 2s forwards;
+        }
+        @keyframes appear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        #heartContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            pointer-events: none; /* Игнорирование событий, чтобы не мешать кнопке */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Наша История</h1>
+    <p>Наша история еще не закончена! Впереди нас ждут новые приключения, смех и самые яркие моменты.</p>
+    <p>Давайте вместе писать эту удивительную главу — ведь самое интересное еще впереди!</p>
+    <button onclick="createHearts()">Люблю!❤️</button>
+    
+    <div id="heartContainer"></div>
+
+    <script>
+        function createHearts() {
+            const container = document.getElementById('heartContainer');
+            container.style.display = 'block'; // Показываем контейнер
+            
+            let count = 0; // Счетчик сердечек
+            const totalHearts = 100; // Общее количество сердечек
+
+            const interval = setInterval(() => {
+                if (count < totalHearts) {
+                    const heart = document.createElement('img');
+                    heart.src = 'https://i.imgur.com/17rjjsY.png'; // Ссылка на изображение сердца
+                    heart.className = 'heart';
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.top = Math.random() * window.innerHeight + 'px';
+                    heart.style.opacity = 0; // Начальная непрозрачность
+
+                    container.appendChild(heart);
+                    
+                    // Анимация появления
+                    heart.style.animationDelay = count * 0.1 + 's'; // Задержка появления
+                    heart.style.opacity = 1; // Конечная непрозрачность
+
+                    count++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 100); // Интервал между сердечками
+        }
+    </script>
+</body>
+</html>

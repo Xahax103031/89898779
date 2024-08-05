@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Где все началось:</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        body {
+            font-family: sans-serif; /* стандартный шрифт */
+            background-color: #f8f8f8; /* цвет фона */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #ff69b4;
+            
+        }
+
+        #map {
+            height: 700px;
+            width: 100%;
+            border: 5px solid #963361;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .visible {
+            opacity: 1;
+            transition: opacity 0.5s ease-in;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        #nextButton {
+            background-color: #e84e97;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            opacity: 0; /* изначально невидим */
+            transition: opacity 0.5s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="story">
+        <h1>Где всё началось</h1>
+        <div>
+            <div id="map" class="hidden"></div>
+        </div>
+        <button id="nextButton" class="hidden" onclick="window.location.href='page5.html'">Перейти на следующую страницу</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([47.243208, 39.829573], 14); // координаты и уровень приближения
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        var marker = L.marker([47.243208, 39.829573]).addTo(map);
+        marker.bindPopup('12.06.2022').openPopup();
+
+        window.onload = function() {
+            document.getElementById('story').classList.add('visible');
+            document.getElementById('map').classList.remove('hidden');
+            var nextButton = document.getElementById('nextButton');
+            nextButton.classList.remove('hidden');
+            setTimeout(function() {
+                nextButton.style.opacity = 1; // плавно показываем кнопку
+            }, 500); // задержка перед появлением кнопки
+        };
+    </script>
+</body>
+</html>

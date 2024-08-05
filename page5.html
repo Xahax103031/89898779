@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь событий 🗓️</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff69b4;
+        }
+        #event-input, #date-input {
+            width: 60%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+        #add-event-button {
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #add-event-button:hover {
+            background-color: #e84e97;
+        }
+        #event-list {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .event {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border-left: 5px solid #ff69b4;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.5s forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        #next-page-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #next-page-button:hover {
+            background-color: #e84e97;
+        }
+    </style>
+</head>
+<body>
+    <h1>Календарь событий 🗓️</h1>
+    <input type="date" id="date-input" />
+    <input type="text" id="event-input" placeholder="Что планируешь сделать?" />
+    <button id="add-event-button">Добавить событие</button>
+
+    <div id="event-list"></div>
+
+    <button id="next-page-button" onclick="window.location.href='page6.html'">На следующую страницу</button>
+
+    <script>
+        const eventInput = document.getElementById('event-input');
+        const dateInput = document.getElementById('date-input');
+        const addEventButton = document.getElementById('add-event-button');
+        const eventList = document.getElementById('event-list');
+
+        // Загружаем события из localStorage
+        function loadEvents() {
+            const events = JSON.parse(localStorage.getItem('events')) || [];
+            events.forEach(event => {
+                displayEvent(event.date, event.description);
+            });
+        }
+
+        // Сохраняем событие в localStorage
+        function saveEvent(event) {
+            const events = JSON.parse(localStorage.getItem('events')) || [];
+            events.push(event);
+            localStorage.setItem('events', JSON.stringify(events));
+        }
+
+        // Отображаем событие
+        function displayEvent(date, description) {
+            const eventElement = document.createElement('div');
+            eventElement.classList.add('event');
+            eventElement.textContent = `${date}: ${description}`;
+            eventList.appendChild(eventElement);
+            // Здесь добавляем класс для анимации
+            setTimeout(() => {
+                eventElement.style.opacity = 1;
+            }, 100); // небольшая задержка для анимации
+        }
+
+        // Обработчик нажатия кнопки "Добавить событие"
+        addEventButton.addEventListener('click', () =>        // Обработчик нажатия кнопки "Добавить событие"
+        addEventButton.addEventListener('click', () => {
+            const date = dateInput.value;
+            const description = eventInput.value;
+
+            if (date && description) {
+                const newEvent = {
+                    date: date,
+                    description: description
+                };
+                
+                // Сохраняем событие
+                saveEvent(newEvent);
+                // Отображаем его на странице
+                displayEvent(date, description);
+                
+                // Очищаем поля ввода
+                eventInput.value = '';
+                dateInput.value = '';
+            } else {
+                alert('Пожалуйста, заполните все поля!');
+            }
+            
+        }));
+
+        // Загружаем события при загрузке страницы
+        window.onload = loadEvents;
+    </script>
+</body>
+</html>

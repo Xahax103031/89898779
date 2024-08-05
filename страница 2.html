@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таймер отношений</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+        }
+
+        h1 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timer {
+            font-size: 24px;
+            color: #ff1493;
+            font-weight: bold;
+            text-align: center;
+            background-color: rgba(255, 105, 180, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff1493;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, opacity 1s ease;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        button:hover {
+            background-color: #ff69b4;
+        }
+
+        .second-button {
+          transition: background-color 0.3s, opacity 1s ease;
+            opacity: 0;
+            animation: fadeIn 3s forwards 3s;
+            margin-top: 100px; /* Сдвигаем кнопку вниз */
+          }
+        
+
+        .show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Сколько мы вместе?</h1>
+    <button id="Button">Показать таймер</button>
+    <button class="button second-button" onclick="location.href='page3.html'">Перейти к следующей странице</button>
+    <div id="timer" class="timer"></div>
+
+    <script>
+        const startDate = new Date(2022, 5, 14); // 14 июня 2022 года
+        let timerElement = document.getElementById('timer');
+        let timerInterval;
+
+        document.getElementById('Button').onclick = function (event) {
+            event.target.style.display = 'none'; // Прячем кнопку
+            timerElement.style.display = 'block'; // Показываем таймер
+            timerElement.style.opacity = 1; // Делаем таймер видимым
+
+            updateTimer(); // Обновляем таймер сразу
+            timerInterval = setInterval(updateTimer, 1000); // Обновляем каждые 1000 мс (1 секунда)
+        }
+
+        function updateTimer() {
+            const now = new Date();
+            const elapsedTime = now - startDate;
+
+            const years = Math.floor(elapsedTime / (1000 * 60 * 60 * 24 * 365));
+            const months = years * 12 + Math.floor((elapsedTime % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const weeks = Math.floor(elapsedTime / (1000 * 60 * 60 * 24 * 7));
+            const days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+            const minutes = Math.floor(elapsedTime / (1000 * 60));
+            const seconds = Math.floor(elapsedTime / 1000);
+
+            timerElement.innerHTML =
+            "Мы вместе уже "+ "<br>" +
+                years + " год" + (years === 1 ? '' : 'а') + "<br>" +
+                "Это " + months + " месяц" + (months === 1 ? '' : 'а') + "<br>" +
+               "Это " + weeks + " недел" + (weeks === 1 ? '' : 'и') + "<br>" +
+               "Это " + days + " дн" + (days === 1 ? '' : 'ей') + "<br>" +
+               "Это " + hours + " ч" + (hours === 1 ? '' : 'ас') + "<br>" +
+               "Это " + minutes + " мин" + (minutes === 1 ? '' : 'ут') + "<br>" +
+              "Это " +seconds + " сек" + (seconds === 1 ? '' : 'унд') + "<br>";
+        }
+            
+        
+    </script>
+    <script>
+       // Ждем 3 секунды, чтобы показать вторую кнопку
+       const secondButton = document.querySelector('.second-button');
+setTimeout(() => {
+  secondButton.style.opacity = 1; // Сделать непрозрачной
+  secondButton.style.visibility = 'visible'; // Отобразить кнопку
+}, 3000); // Ждем 3 секунды
+
+
+    </script>
+</body>
+
+</html>

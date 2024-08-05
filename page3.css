@@ -1,0 +1,123 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.carousel {
+    width: 100vw; /* Полная ширина окна */
+    height: 500px; /* Полная высота окна */
+    position: relative; /* Для абсолютного позиционирования контейнера */
+    overflow: hidden; /* Скрываем элементы, выходящие за пределы */
+}
+
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+    padding: 0;
+}
+
+.carousel-item {
+    display: flex; /* Чтобы элементы выравнивались корректно */
+    justify-content: center; /* Центрирование содержимого по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+}
+
+.carousel-item img {
+    max-width: 100%; /* Максимальная ширина 100% контейнера */
+    max-height: 300px; /* Подставь нужную высоту, чтобы не было слишком больших изображений */
+    height: auto; /* Авто-высота для сохранения пропорций */
+    object-fit: contain; /* Сохраняет пропорции изображения */
+}
+
+
+
+img {
+    width: 100%; /* Изображение занимает всю ширину элемента */
+    border-radius: 0px; /* Закругление углов */
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-400%); } /* Прорисовка всех фото */
+}
+.container {
+    position: absolute;
+    top: 50%; /* Смещение по оси Y */
+    
+    background-color: #fffffffa;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    opacity: 0; /* Изначально контейнер невидим */
+    transform: translateY(20px); /* Сдвигаем контейнер вниз по оси Y */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Плавный переход для контейнера */
+    animation: fadeIn 1s forwards; /* Анимация появления */
+    z-index: 10;
+}
+
+.start-button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff69b4; /* Цвет кнопки */
+    color: white; /* Цвет текста на кнопке */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Плавный переход цвета кнопки */
+}
+
+.start-button:hover {
+    background-color: #a84677; /* Цвет кнопки при наведении */
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Заголовок */
+h2 {
+    color: #ff69b4; /* Цвет заголовка */
+    font-size: 24px; /* Размер шрифта заголовка */
+    margin-bottom: 15px; /* Отступ снизу */
+}
+
+/* Параграф */
+p {
+    color: #666; /* Цвет текста параграфа */
+    font-size: 18px; /* Размер шрифта для параграфа */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+.nextbutton {
+    background-color: #ff69b4;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.5s ease-in-out;
+    opacity: 0; /* Сначала кнопка невидима */
+    visibility: hidden; /* И скрыта */
+    transform: translateY(20px); /* Сдвигаем кнопку вниз */
+  }
+
+  .nextbutton.visible {
+    opacity: 1; /* Сделать видимой */
+    visibility: visible; /* Отобразить */
+    transform: translateY(0); /* Возвращаем кнопку на место */
+  }
+
+  .nextbutton:hover {
+    background-color: #e84e97;
+  }
+  *, *::before, *::after {
+    box-sizing: border-box;
+}

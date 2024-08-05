@@ -1,0 +1,16 @@
+/* styles.css */
+
+.container {
+    opacity: 0; /* Начальная прозрачность */
+    transition: opacity 1s ease-in-out; /* Плавный переход */
+    /* Можно добавить другую анимацию, если хочешь */
+}
+
+.container.visible {
+    opacity: 1; /* Полная видимость */
+}
+
+#map {
+    height: 800px; /* Высота карты */
+    width: 100%; /* Ширина карты */
+}

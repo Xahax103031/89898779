@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="page3.css">
+    <title>Карусель Фото</title>
+</head>
+<body>
+    <div class="container" id="story">
+        <h2>Как начиналась наша история</h2>
+        <p>Каждая великая история начинается с маленького шага. Давайте отправимся в это удивительное путешествие вместе!</p>
+        <button class="nextbutton">Начнем!</button>
+    </div>
+    
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="https://i.imgur.com/I64zM1a.jpeg" alt="Мое Фото 1" class="fade-in">
+            <img src="https://i.imgur.com/iqPQpht.jpeg" alt="Мое Фото 2" class="fade-in">
+            <img src="https://i.imgur.com/REKvUrb.jpeg" alt="Мое Фото 3" class="fade-in">
+            <img src="https://i.imgur.com/JTCs2qK.jpeg" alt="Мое Фото 4" class="fade-in">
+            <img src="https://i.imgur.com/g6o5LsH.jpeg" alt="Мое Фото 5" class="fade-in">
+            <img src="https://i.imgur.com/K4oM5I4.jpeg" alt="Мое Фото 6" class="fade-in">
+            <img src="https://i.imgur.com/JDSgW0a.jpeg" alt="Мое Фото 7" class="fade-in">
+            <img src="https://i.imgur.com/SpR7hqV.jpeg" alt="Мое Фото 8" class="fade-in">
+            <img src="https://i.imgur.com/vvlhCFa.jpeg" alt="Мое Фото 9" class="fade-in">
+            <img src="https://i.imgur.com/gGHd7af.jpeg" alt="Мое Фото 10" class="fade-in">
+            <img src="https://i.imgur.com/3zvAQWj.jpeg" alt="Мое Фото 11" class="fade-in">
+            <img src="https://i.imgur.com/U7OGpoV.jpeg" alt="Мое Фото 12" class="fade-in">
+        </div>
+    </div>
+    
+    <style>
+    .carousel-container {
+        overflow: hidden;
+        width: 80%; /* Ширина контейнера */
+        height: 400px; /* Высота контейнера */
+        position: relative;
+        margin: auto; /* Центрирование контейнера */
+    }
+    
+    .carousel-slide {
+        position: relative;
+        height: 100%; /* Высота контейнера */
+    }
+    
+    .carousel-slide img {
+        position: absolute;
+        width: auto; /* Авто ширина для сохранения пропорций */
+        height: 100%; /* Высота изображений для заполнения контейнера */
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%); /* Центрируем изображение */
+        opacity: 0; /* Изначально скрываем изображения */
+        transition: opacity 1s ease-in-out; /* Плавный переход по opacity */
+    }
+    
+    .carousel-slide img.fade-in {
+        animation: fade 12s infinite; /* Анимация для плавного появления */
+    }
+    
+    @keyframes fade {
+        0% { opacity: 0; }
+        20% { opacity: 1; }
+        23% { opacity: 1; }
+        30% { opacity: 0; }
+        100% { opacity: 0; }
+    }
+    
+    /* Добавим задержку для каждой фотографии */
+    .carousel-slide img:nth-child(1) { animation-delay: 0s; }
+    .carousel-slide img:nth-child(2) { animation-delay: 2s; }
+    .carousel-slide img:nth-child(3) { animation-delay: 4s; }
+    .carousel-slide img:nth-child(4) { animation-delay: 6s; }
+    .carousel-slide img:nth-child(5) { animation-delay: 8s; }
+    .carousel-slide img:nth-child(6) { animation-delay: 10s; }
+    .carousel-slide img:nth-child(7) { animation-delay: 12s; }
+    .carousel-slide img:nth-child(8) { animation-delay: 14s; }
+    .carousel-slide img:nth-child(9) { animation-delay: 16s; }
+    .carousel-slide img:nth-child(10) { animation-delay: 18s; }
+    .carousel-slide img:nth-child(11) { animation-delay: 20s; }
+    .carousel-slide img:nth-child(12) { animation-delay: 22s; }
+    </style>
+    
+    
+    
+    
+    <script src="page3.js"></script>
+<script>
+    // Пример кода, который добавляет класс 'visible' к кнопке через 1 секунду
+setTimeout(() => {
+  const button = document.querySelector('.nextbutton');
+  button.classList.add('visible');
+}, 1000);
+</script>
+<script>
+    const button = document.querySelector('.nextbutton');
+    button.addEventListener('click', () => {
+      window.location.href = 'page4.html'; // Переход на страницу page4.html
+    });
+  </script>
+</body>
+</html>
